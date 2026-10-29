@@ -31,5 +31,5 @@ These checks are not a guarantee that arbitrary inputs or dependencies are safe.
 - Teacher APIs receive the prompts supplied by the caller. Dataset builders can
   upload to Hugging Face when explicitly run; review the destination first.
 
-No GPU training or benchmark rerun is part of this release review. Code is
-prepared as a private GitHub draft before any model/data publication.
+No GPU training or benchmark rerun is part of this release review. Dataset and
+model publication is separate from the code-only GitHub release.

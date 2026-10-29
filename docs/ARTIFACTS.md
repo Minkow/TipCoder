@@ -1,48 +1,42 @@
-# Dataset and checkpoint release inventory
+# Datasets and Checkpoints
 
-Metadata inspected on 2026-10-30. No datasets or weights are included in Git.
-Internal source paths are stored only in the maintainer's private inventory.
-The names below identify files, not a promise that every candidate will be released.
+Code is hosted on GitHub; datasets and weights will be hosted separately on
+Hugging Face. **The artifacts below are not yet available for download.**
+Links will be added after upload has been verified.
 
-## Checkpoints
+## Training Data
 
-| Candidate | Located export | Config architecture | Stored size | Status |
-| --- | --- | --- | --- | --- |
-| SFT | `AceCode-SFT-q5` | Qwen3ForCausalLM | 7.51 GiB | Two safetensors shards, index references present |
-| RL | `global_step10/converted_hf` in the `0123` run | Qwen3ForCausalLM | 59.95 GiB | Four bin shards; investigate storage overhead before packaging |
+Only the final SFT and RL training datasets are selected for release. Their
+source files were identified from historical training task arguments, rather
+than inferred from filenames. Internal version labels are not release names.
 
-These paths were selected by the retained fullprompt experiment launchers.
-Directory names are historical labels and must not be used to infer architecture.
-Only configuration and shard presence were inspected; tensor loading, base-model
-identity, redistribution terms and final artifact sanitization remain pending.
+| Planned release file | Stage | Records | Source size |
+| --- | --- | ---: | ---: |
+| `sft/train.json` | Supervised tip-proposer training | 2,126 | 5.40 MB |
+| `rl/train.json` | Reinforcement learning | 6,410 | 113.15 MB |
 
-The RL index declares 16,089,872,384 bytes of tensor data while its files occupy
-about 64.4 GB. ZIP storage inspection shows a 16,089,088,000-byte storage in
-each of the first three shards and 16,089,872,384 bytes in the fourth, consistent
-with repeated backing storage rather than independent compact shards. Tensor
-values have not yet been loaded or compared. Do not rename another checkpoint
-or convert dtype to work around this. Create a separate export only after checking tensor
-equivalence. Exclude optimizer states, training logs, RNG state and platform metadata.
+SFT records contain `id`, `source`, `prompt`, `output` and `pass_rate`.
+RL records contain `id`, `source`, `question`, `test_cases`, `inferences` and
+`context_messages`. No samples are removed or rewritten for the release.
+Sizes above describe the source files; serialization may change the file size.
 
-## Dataset candidates
+The datasets derive from [AceCode-87K](https://huggingface.co/datasets/TIGER-Lab/AceCode-87K).
+The planned dataset release follows its MIT license with upstream attribution.
+Treat generated code and tests as untrusted input; execute only in an isolated
+environment.
 
-| File | Records | Approximate file size | Status |
-| --- | ---: | ---: | --- |
-| `acecode_87k_final_sft_v1_filtered_clean.json` | 4,274 | 5.29 MB | SFT candidate |
-| `acecode_87k_final_sft_v1_filtered_clean_v3.json` | 3,974 | 5.00 MB | Alternate SFT candidate |
-| `acecode_compression_sft.json` | 2,968 | 15.57 MB | Distillation intermediate |
-| `acecode_87k_v6.json` | 13,342 | 230.39 MB | RL candidate |
+## Proposer Checkpoints
 
-Record counts were read from actual files, including JSONL stored with a `.json`
-suffix. No records were modified or discarded. Final selection, full content
-privacy review remain pending. The release is intended to follow AceCode's MIT
-license, retaining upstream attribution and any source-specific notices.
-Upstream reference: https://huggingface.co/datasets/TIGER-Lab/AceCode-87K
+The selected SFT checkpoint was trained from Qwen3-4B-Instruct-2507. The RL run
+starts from that SFT checkpoint; the selected RL export is from step 10.
+Historical directory labels do not describe the model architecture reliably.
 
-## Distribution
+The prepared RL export uses BF16 safetensors, tokenizer files and model
+configuration. Its 399 saved tensors were checked byte-for-byte against the
+source tensors after conversion to BF16. The package is approximately 8.84 GB,
+including tokenizer files. This checks serialization, not generation parity.
 
-Keep code on GitHub. Publish approved model and dataset artifacts separately,
-with model/dataset cards and links here. Do not apply the code's MIT
-license automatically to weights, upstream examples or teacher-generated data.
-No model or dataset hosting repository has been created by this preparation.
-Hugging Face authentication and the destination account are required before upload.
+Optimizer states, training logs, platform metadata and the original redundant
+FP32 storage are excluded. Original checkpoints remain unchanged. Model-card
+attribution and redistribution terms are separate from this repository's code
+license. A verified download link will be added after publication.
