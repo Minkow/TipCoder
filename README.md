@@ -159,8 +159,14 @@ Training targets **OpenRLHF commit `cf69bd61a5fbcfa4f07bad2af76797643ac557e5`**.
 The installer applies our overlay to a fresh checkout. Use the pinned revision,
 not the latest upstream release.
 
-The organized release has CPU-level checks, but has not undergone a fresh
-end-to-end GPU training run. Dependency compatibility depends on your environment.
+Dependency compatibility depends on your CUDA and Python environment.
+
+## Release Note
+
+This repository was organized and documented with AI assistance from the
+original research code. The reorganized release has not undergone a fresh
+end-to-end training or evaluation run. Please refer to the paper for the
+experimental methodology and report any issues with the released code.
 
 ## Citation
 

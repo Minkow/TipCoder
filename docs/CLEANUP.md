@@ -51,6 +51,6 @@ and heuristic training-code extraction. These are recorded, not repaired as
 part of cleanup. Changing them requires a separate behavioral change decision.
 Use isolated execution environments and trusted training inputs.
 
-Verification here covers source-level preservation, syntax, CPU utility tests
-and private-configuration scans. It is not a new training run, a reproduction
-audit, or evidence of historical experiment correctness.
+This organization work is not a new training run, a reproduction audit, or
+evidence of historical experiment correctness. See the README release note
+for the scope of AI assistance.
