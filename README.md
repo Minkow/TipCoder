@@ -14,6 +14,7 @@ between them without access to test outcomes.
 
 [Paper](https://aclanthology.org/2026.findings-emnlp.495/)
 &nbsp; / &nbsp; [PDF](https://aclanthology.org/2026.findings-emnlp.495.pdf)
+&nbsp; / &nbsp; [Checkpoint](https://huggingface.co/Minkow/TipCoder-RL)
 &nbsp; / &nbsp; [Quick Start](#quick-start)
 &nbsp; / &nbsp; [Training](docs/TRAINING.md)
 &nbsp; / &nbsp; [Evaluation](evaluation/README.md)
@@ -36,10 +37,17 @@ solution when the additional guidance is unhelpful.
 | --- | --- |
 | Data construction, SFT/RL integration, inference, evaluation | Included in this repository |
 | SFT and RL training datasets | Selected; Hugging Face upload pending |
-| RL proposer weights | BF16 export prepared; Hugging Face upload pending |
+| RL proposer weights | [TipCoder-RL on Hugging Face](https://huggingface.co/Minkow/TipCoder-RL), BF16 safetensors |
 | Remote BCB execution server and dependency image | External setup required |
 
 See [artifacts](docs/ARTIFACTS.md) for dataset sizes and checkpoint packaging.
+
+Download the RL proposer (approximately 8.84 GB; no authentication required):
+
+```bash
+pip install -U huggingface_hub
+hf download Minkow/TipCoder-RL --local-dir checkpoints/TipCoder-RL
+```
 
 ## Repository Guide
 
@@ -82,7 +90,7 @@ to serve the proposer and coder via OpenAI-compatible endpoints. Model versions
 and GPU-library dependencies must be selected for your installed CUDA stack.
 
 ```bash
-vllm serve /path/to/proposer --served-model-name proposer --port 8000
+vllm serve checkpoints/TipCoder-RL --dtype bfloat16 --served-model-name proposer --port 8000
 ```
 
 The proposer requires `/v1/completions` (preformatted training prompt), while

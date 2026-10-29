@@ -1,8 +1,8 @@
 # Datasets and Checkpoints
 
-Code is hosted on GitHub; datasets and weights will be hosted separately on
-Hugging Face. **The artifacts below are not yet available for download.**
-Links will be added after upload has been verified.
+Code is hosted on GitHub. The BF16 RL proposer is available at
+[Minkow/TipCoder-RL](https://huggingface.co/Minkow/TipCoder-RL).
+**Training dataset uploads are still pending.**
 
 ## Training Data
 
@@ -27,6 +27,16 @@ environment.
 
 ## Proposer Checkpoints
 
+```bash
+pip install -U huggingface_hub
+hf download Minkow/TipCoder-RL --local-dir checkpoints/TipCoder-RL
+```
+
+The public checkpoint contains four BF16 safetensors shards, their index,
+configuration/tokenizer files, a model card and license notices. Uploaded file
+sizes and hashes were verified against the export. Verified model revision:
+`66cf49845d6f147d3556703ff336eb6ea9b54f45`.
+
 The selected SFT checkpoint was trained from Qwen3-4B-Instruct-2507. The RL run
 starts from that SFT checkpoint; the selected RL export is from step 10.
 Historical directory labels do not describe the model architecture reliably.
@@ -39,4 +49,5 @@ including tokenizer files. This checks serialization, not generation parity.
 Optimizer states, training logs, platform metadata and the original redundant
 FP32 storage are excluded. Original checkpoints remain unchanged. Model-card
 attribution and redistribution terms are separate from this repository's code
-license. A verified download link will be added after publication.
+license. The upstream base-model Apache-2.0 license is included in the model
+repository's LICENSE alongside the TIPCoder contribution notice.
