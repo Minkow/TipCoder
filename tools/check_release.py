@@ -32,6 +32,8 @@ def main():
             continue
         if path == Path(__file__).resolve():
             continue
+        if path.suffix.lower() == ".png":
+            continue
         text = path.read_text()
         if path.suffix == ".py":
             ast.parse(text, filename=str(path))

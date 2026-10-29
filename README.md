@@ -20,19 +20,11 @@ between them without access to test outcomes.
 
 ## Overview
 
-```mermaid
-flowchart LR
-    P[Programming problem] --> N[Code generator]
-    P --> T[TipCoder proposer]
-    T --> H[Problem-specific tips]
-    P --> G[Code generator]
-    H --> G
-    N --> B[Native solution]
-    G --> C[Tip-guided solution]
-    B --> R[Reward model]
-    C --> R
-    R --> S[Selected solution]
-```
+![TipCoder overview: SFT and RL training on the left; native and tip-guided code generation with reward-model selection on the right.](docs/assets/tipcoder-overview.png)
+
+*Figure 1 from the [paper](https://aclanthology.org/2026.findings-emnlp.495/):
+training the instruction proposer (left) and selecting between native and
+tip-guided solutions at inference time (right).*
 
 The proposer explores **instructions**, rather than only sampling more programs
 from the same prompt. Keeping the native candidate lets the selector retain a
