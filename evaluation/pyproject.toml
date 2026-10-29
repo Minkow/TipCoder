@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tipcoder-eval"
+version = "0.1.0"
+description = "Independent execution evaluation for TIPCoder"
+requires-python = ">=3.10"
+dependencies = ["evalplus", "numpy", "psutil", "termcolor", "tqdm", "fire"]
+
+[project.scripts]
+tipcoder-eval = "tipcoder_eval.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

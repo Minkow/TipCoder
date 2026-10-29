@@ -1,0 +1,8 @@
+TIPCoder
+Copyright 2026 TIPCoder contributors
+
+Original project contributions are licensed under Apache License 2.0.
+This distribution contains modified OpenRLHF source (Apache-2.0) and
+AceCoder-derived source (MIT). Their license texts are retained under training/.
+Existing source-level copyright notices remain applicable.
+Model weights and datasets are distributed separately under their own terms.

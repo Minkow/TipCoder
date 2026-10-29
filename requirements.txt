@@ -1,0 +1,6 @@
+openai
+tqdm
+requests
+fire
+numpy
+termcolor
