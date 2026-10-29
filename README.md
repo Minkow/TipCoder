@@ -4,7 +4,7 @@ Code for training a test-time instruction proposer and selecting between native
 and tip-guided code candidates. This tree is a code-cleanup draft for
 [TipCoder (Findings of EMNLP 2026)](https://aclanthology.org/2026.findings-emnlp.495/).
 
-Original contributions use Apache-2.0; see `LICENSE`, `NOTICE` and
+Original contributions use MIT, following AceCoder; see `LICENSE`, `NOTICE` and
 `THIRD_PARTY.md`. Datasets and checkpoints are not yet published. Their current
 packaging status is documented in [ARTIFACTS.md](docs/ARTIFACTS.md).
 

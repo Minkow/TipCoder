@@ -9,7 +9,7 @@ The data builders and execution reward modules were maintained in the local
 AceCoder training workspace. Its license is retained at `training/ACECODER_LICENSE`.
 EvalPlus execution helpers retain their upstream source notices.
 
-Original TIPCoder contributions are released under Apache-2.0 (root `LICENSE`).
+Original TIPCoder contributions are released under MIT (root `LICENSE`), following AceCoder.
 Third-party code retains its respective license and notices. Model weights and
 datasets are not covered by this code license and require separate release terms.
 No models or third-party datasets are included in the Git repository.

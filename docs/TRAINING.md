@@ -39,7 +39,7 @@ replacement for training-test execution.
 
 Upstream copyright/license is retained in `training/OPENRLHF_LICENSE`.
 Project files derived from AceCoder require its attribution as described in
-`THIRD_PARTY.md`. Original project contributions use Apache-2.0; third-party
+`THIRD_PARTY.md`. Original project contributions use MIT; third-party
 source retains its existing notices and licensing.
 
 ## SFT

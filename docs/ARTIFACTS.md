@@ -17,8 +17,11 @@ Only configuration and shard presence were inspected; tensor loading, base-model
 identity, redistribution terms and final artifact sanitization remain pending.
 
 The RL index declares 16,089,872,384 bytes of tensor data while its files occupy
-about 64.4 GB. Do not rename another checkpoint or convert dtype to work around
-this. Inspect storage and create a separate export only after checking tensor
+about 64.4 GB. ZIP storage inspection shows a 16,089,088,000-byte storage in
+each of the first three shards and 16,089,872,384 bytes in the fourth, consistent
+with repeated backing storage rather than independent compact shards. Tensor
+values have not yet been loaded or compared. Do not rename another checkpoint
+or convert dtype to work around this. Create a separate export only after checking tensor
 equivalence. Exclude optimizer states, training logs, RNG state and platform metadata.
 
 ## Dataset candidates
@@ -32,11 +35,14 @@ equivalence. Exclude optimizer states, training logs, RNG state and platform met
 
 Record counts were read from actual files, including JSONL stored with a `.json`
 suffix. No records were modified or discarded. Final selection, full content
-privacy review and source-dataset redistribution terms are not yet confirmed.
+privacy review remain pending. The release is intended to follow AceCode's MIT
+license, retaining upstream attribution and any source-specific notices.
+Upstream reference: https://huggingface.co/datasets/TIGER-Lab/AceCode-87K
 
 ## Distribution
 
 Keep code on GitHub. Publish approved model and dataset artifacts separately,
-with model/dataset cards and links here. Do not apply the code's Apache-2.0
+with model/dataset cards and links here. Do not apply the code's MIT
 license automatically to weights, upstream examples or teacher-generated data.
 No model or dataset hosting repository has been created by this preparation.
+Hugging Face authentication and the destination account are required before upload.
