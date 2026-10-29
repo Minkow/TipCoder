@@ -2,7 +2,8 @@
 
 Code is hosted on GitHub. The BF16 RL proposer is available at
 [Minkow/TipCoder-RL](https://huggingface.co/Minkow/TipCoder-RL).
-**Training dataset uploads are still pending.**
+The final training data is available at
+[Minkow/TipCoder-Data](https://huggingface.co/datasets/Minkow/TipCoder-Data).
 
 ## Training Data
 
@@ -10,7 +11,7 @@ Only the final SFT and RL training datasets are selected for release. Their
 source files were identified from historical training task arguments, rather
 than inferred from filenames. Internal version labels are not release names.
 
-| Planned release file | Stage | Records | Source size |
+| Release file | Stage | Records | File size |
 | --- | --- | ---: | ---: |
 | `sft/train.json` | Supervised tip-proposer training | 2,126 | 5.40 MB |
 | `rl/train.json` | Reinforcement learning | 6,410 | 113.15 MB |
@@ -18,10 +19,22 @@ than inferred from filenames. Internal version labels are not release names.
 SFT records contain `id`, `source`, `prompt`, `output` and `pass_rate`.
 RL records contain `id`, `source`, `question`, `test_cases`, `inferences` and
 `context_messages`. No samples are removed or rewritten for the release.
-Sizes above describe the source files; serialization may change the file size.
+The published files are byte-identical to the source files. SFT uses a JSON
+array; RL retains JSON Lines serialization and its original `.json` suffix.
+
+```bash
+hf download Minkow/TipCoder-Data --repo-type dataset --local-dir data/TipCoder
+```
+
+```python
+from datasets import load_dataset
+
+sft = load_dataset("Minkow/TipCoder-Data", "sft", split="train")
+rl = load_dataset("Minkow/TipCoder-Data", "rl", split="train")
+```
 
 The datasets derive from [AceCode-87K](https://huggingface.co/datasets/TIGER-Lab/AceCode-87K).
-The planned dataset release follows its MIT license with upstream attribution.
+The dataset release follows its MIT license with upstream attribution.
 Treat generated code and tests as untrusted input; execute only in an isolated
 environment.
 

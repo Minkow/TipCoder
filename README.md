@@ -15,6 +15,7 @@ between them without access to test outcomes.
 [Paper](https://aclanthology.org/2026.findings-emnlp.495/)
 &nbsp; / &nbsp; [PDF](https://aclanthology.org/2026.findings-emnlp.495.pdf)
 &nbsp; / &nbsp; [Checkpoint](https://huggingface.co/Minkow/TipCoder-RL)
+&nbsp; / &nbsp; [Training Data](https://huggingface.co/datasets/Minkow/TipCoder-Data)
 &nbsp; / &nbsp; [Quick Start](#quick-start)
 &nbsp; / &nbsp; [Training](docs/TRAINING.md)
 &nbsp; / &nbsp; [Evaluation](evaluation/README.md)
@@ -36,7 +37,7 @@ solution when the additional guidance is unhelpful.
 | Resource | Availability |
 | --- | --- |
 | Data construction, SFT/RL integration, inference, evaluation | Included in this repository |
-| SFT and RL training datasets | Selected; Hugging Face upload pending |
+| SFT and RL training datasets | [TipCoder-Data on Hugging Face](https://huggingface.co/datasets/Minkow/TipCoder-Data), 2,126 SFT / 6,410 RL records |
 | RL proposer weights | [TipCoder-RL on Hugging Face](https://huggingface.co/Minkow/TipCoder-RL), BF16 safetensors |
 | Remote BCB execution server and dependency image | External setup required |
 
@@ -48,6 +49,15 @@ Download the RL proposer (approximately 8.84 GB; no authentication required):
 pip install -U huggingface_hub
 hf download Minkow/TipCoder-RL --local-dir checkpoints/TipCoder-RL
 ```
+
+Download the final training data (approximately 119 MB):
+
+```bash
+hf download Minkow/TipCoder-Data --repo-type dataset --local-dir data/TipCoder
+```
+
+The `sft` and `rl` dataset configurations are separate. Files retain their
+original contents; see the dataset card for schemas and serialization formats.
 
 ## Repository Guide
 
